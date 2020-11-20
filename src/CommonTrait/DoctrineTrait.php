@@ -1,6 +1,6 @@
 <?php
 
-namespace StQueue\CommonTrait;
+namespace PubSubHelper\CommonTrait;
 
 /**
  * Created by PhpStorm.
@@ -17,10 +17,12 @@ trait DoctrineTrait
      */
     private $_em;
 
+
     /**
      * Get Doctrine Entity Manager
      *
      * @return \Doctrine\ORM\EntityManager
+     * @throws \Doctrine\ORM\ORMException
      */
     public function getEM(): \Doctrine\ORM\EntityManager
     {
@@ -44,9 +46,10 @@ trait DoctrineTrait
      * Helper Method
      * Gets the repository for an entity class.
      *
-     * @param string $entityName The name of the entity
-     * @param string $entityPrefix The entity prefix
-     * @return \Doctrine\Common\Persistence\ObjectRepository|\Doctrine\ORM\EntityRepository The repository class.
+     * @param string $entityName
+     * @param string $entityPrefix
+     * @return \Doctrine\ORM\EntityRepository|\Doctrine\Persistence\ObjectRepository
+     * @throws \Doctrine\ORM\ORMException
      */
     public function repo(string $entityName, string $entityPrefix = "\\Entity\\")
     {

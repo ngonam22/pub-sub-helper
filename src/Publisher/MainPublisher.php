@@ -8,34 +8,20 @@
 
 namespace PubSubHelper;
 
+use PubSubHelper\Publisher\AbstractPublisher;
 use PubSubHelper\Queue\RabbitMQConnector;
 
-abstract class MainPublisher
+abstract class MainPublisher extends AbstractPublisher
 {
-    /**
-     * Queue config
-     * @var array
-     */
-    protected $config;
 
     /**
-     * @var RabbitMQConnector
-     */
-    protected $connector;
-
-    /**
-     * Handle method will be called after the command is dispatched
+     * Custom Publisher must extend the handle function it own
+     * The method will be called after the command is dispatched
      *
      * @return mixed
      */
     abstract public function handle();
 
-
-    public function __construct(array $config)
-    {
-        $this->config = $config;
-        $this->connector = new RabbitMQConnector($config);
-    }
 
     /**
      * Dispatch the command
@@ -49,21 +35,5 @@ abstract class MainPublisher
         $self->handle();
 
         return $self;
-    }
-
-    /**
-     * @return RabbitMQConnector
-     */
-    public function getConnector(): RabbitMQConnector
-    {
-        return $this->connector;
-    }
-
-    /**
-     * @param RabbitMQConnector $connector
-     */
-    public function setConnector(RabbitMQConnector $connector): void
-    {
-        $this->connector = $connector;
     }
 }

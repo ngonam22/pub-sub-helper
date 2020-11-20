@@ -6,7 +6,7 @@
  * Time: 14:45
  */
 
-namespace StQueue\CommonTrait;
+namespace PubSubHelper\CommonTrait;
 
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -16,9 +16,9 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 //use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Serializer\Serializer;
 
-use StQueue\Serializer\Normalizer\StPropertyNormalizer;
-use StQueue\Serializer\NameConverter\PropertyNameConverter;
-use StQueue\Serializer\StReflectionExtractor;
+use PubSubHelper\Serializer\Normalizer\StPropertyNormalizer;
+use PubSubHelper\Serializer\NameConverter\PropertyNameConverter;
+use PubSubHelper\Serializer\StReflectionExtractor;
 
 trait DenormalizerTrait {
 

@@ -6,15 +6,15 @@
  * Time: 17:07
  */
 
-namespace StQueue\Queue;
+namespace PubSubHelper\Queue;
 
 use Interop\Amqp\AmqpConsumer;
 use Interop\Amqp\AmqpMessage;
-use StQueue\CommonTrait;
+use PubSubHelper\CommonTrait;
 
-use \ST\Arr;
+use StCommonService\Helper\Arr;
 
-use StQueue\Queue\RabbitMQConnector;
+use PubSubHelper\Queue\RabbitMQConnector;
 
 /**
  * Class RabbitMQJob

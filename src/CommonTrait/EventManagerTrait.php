@@ -6,15 +6,15 @@
  * Time: 14:18
  */
 
-namespace StQueue\CommonTrait;
+namespace PubSubHelper\CommonTrait;
 
-use \Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\SharedEventManager;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\SharedEventManager;
 
 trait EventManagerTrait
 {
     /**
-     * @var \Zend\EventManager\EventManagerInterface;
+     * @var \Laminas\EventManager\EventManagerInterface;
      */
     protected $eventManager;
 

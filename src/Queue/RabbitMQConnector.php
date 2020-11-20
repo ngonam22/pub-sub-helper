@@ -6,7 +6,7 @@
  * Time: 10:55
  */
 
-namespace StQueue\Queue;
+namespace PubSubHelper\Queue;
 
 use Interop\Amqp\AmqpConnectionFactory;
 use Interop\Amqp\AmqpConnectionFactory as InteropAmqpConnectionFactory;
@@ -15,15 +15,15 @@ use Interop\Amqp\AmqpTopic;
 use Interop\Amqp\AmqpQueue;
 use Interop\Amqp\Impl\AmqpBind;
 use Interop\Amqp\AmqpMessage;
-use Interop\Amqp\AmqpConsumer;
+//use Interop\Amqp\AmqpConsumer;
 
 use Enqueue\AmqpLib\AmqpConnectionFactory as EnqueueAmqpConnectionFactory;
 use Enqueue\AmqpTools\RabbitMqDlxDelayStrategy;
 use Enqueue\AmqpTools\DelayStrategyAware;
 
-use \ST\Arr;
-use StQueue\CommonTrait\EventManagerTrait;
-use StQueue\Event\WorkerStopping;
+use StCommonService\Helper\Arr;
+use PubSubHelper\CommonTrait\EventManagerTrait;
+use PubSubHelper\Event\WorkerStopping;
 
 class RabbitMQConnector
 {
@@ -63,7 +63,7 @@ class RabbitMQConnector
     /**
      * Establish a RabbitMQ connection.
      * @param array $config
-     * @throws \ReflectionException
+     * @throws \ReflectionException|\Exception
      */
     public function connect(array $config = [])
     {
@@ -138,7 +138,6 @@ class RabbitMQConnector
      * @param array  $options
      * @return string|null
      * @throws \Interop\Queue\Exception
-     * @throws \ReflectionException
      */
     public function publish($payload, string $exchangeCombination, array $options = [])
     {
@@ -192,7 +191,7 @@ class RabbitMQConnector
             [$queue, $topic] = $this->declareEverything($exchangeCombination);
 
             /** @var AmqpMessage $message */
-            $encodedMsg = \Zend\Json\Json::encode($payload);
+            $encodedMsg = \Laminas\Json\Json::encode($payload);
             $message = $this->context->createMessage($encodedMsg);
 
             // sign the data

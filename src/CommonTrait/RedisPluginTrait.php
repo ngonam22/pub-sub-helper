@@ -1,6 +1,6 @@
 <?php
 
-namespace StQueue\CommonTrait;
+namespace PubSubHelper\CommonTrait;
 
 /**
  * Created by PhpStorm.

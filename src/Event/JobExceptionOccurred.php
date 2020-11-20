@@ -1,6 +1,6 @@
 <?php
 
-namespace StQueue\Event;
+namespace PubSubHelper\Event;
 
 class JobExceptionOccurred
 {
@@ -8,7 +8,7 @@ class JobExceptionOccurred
     /**
      * The job instance.
      *
-     * @var \ST\Replication\Queue\RabbitMQJob
+     * @var \PubSubHelper\Queue\RabbitMQJob
      */
     public $job;
 
@@ -22,7 +22,7 @@ class JobExceptionOccurred
     /**
      * Create a new event instance.
      *
-     * @param  \ST\Replication\Queue\RabbitMQJob  $job
+     * @param  \PubSubHelper\Queue\RabbitMQJob  $job
      * @param  \Exception  $exception
      * @return void
      */

@@ -6,7 +6,7 @@
  * Time: 17:17
  */
 
-namespace StQueue\Exception;
+namespace PubSubHelper\Exception;
 
 use RuntimeException;
 

@@ -1,20 +1,20 @@
 <?php
 
-namespace StQueue\Event;
+namespace PubSubHelper\Event;
 
 class JobProcessing
 {
     /**
      * The job instance.
      *
-     * @var \ST\Replication\Queue\RabbitMQJob
+     * @var \PubSubHelper\Queue\RabbitMQJob
      */
     public $job;
 
     /**
      * Create a new event instance.
      *
-     * @param  \ST\Replication\Queue\RabbitMQJob  $job
+     * @param  \PubSubHelper\Queue\RabbitMQJob  $job
      * @return void
      */
     public function __construct($job)

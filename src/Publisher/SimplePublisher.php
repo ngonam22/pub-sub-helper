@@ -9,7 +9,11 @@
 namespace PubSubHelper\Publisher;
 
 
-class SimplePublisher
+class SimplePublisher extends AbstractPublisher
 {
 
+    public function dispatch($payload, string $exchangeCombination, array $options = [])
+    {
+
+    }
 }

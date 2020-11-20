@@ -1,6 +1,6 @@
 <?php
 
-namespace StQueue\Event;
+namespace PubSubHelper\Event;
 
 class WorkerStopping
 {
