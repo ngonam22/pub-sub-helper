@@ -5,7 +5,6 @@
     "require": {
         "php": "^7.1",
         "ext-json": "*",
-        "laminas/laminas-json": "^3.1",
         "enqueue/amqp-lib": "^0.10.4",
         "symfony/serializer": "^4.4.16",
         "symfony/property-access": "^4.4.16",

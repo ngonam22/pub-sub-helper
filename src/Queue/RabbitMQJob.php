@@ -117,9 +117,9 @@ class RabbitMQJob
     public function getBody()
     {
         if ($this->parsedBody === false)
-            $this->parsedBody = \Laminas\Json\Json::decode(
+            $this->parsedBody = json_decode(
                 $this->getRawBody(),
-                \Laminas\Json\Json::TYPE_ARRAY
+                true
             );
 
         return $this->parsedBody;

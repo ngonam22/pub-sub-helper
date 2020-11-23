@@ -203,7 +203,7 @@ class RabbitMQConnector
             [$queue, $topic] = $this->declareEverything($exchangeCombination);
 
             /** @var AmqpMessage $message */
-            $encodedMsg = \Laminas\Json\Json::encode($payload);
+            $encodedMsg = json_encode($payload);
             $message = $this->context->createMessage($encodedMsg);
 
             // sign the data
