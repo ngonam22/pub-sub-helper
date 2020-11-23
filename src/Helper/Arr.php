@@ -51,6 +51,8 @@ class Arr
         foreach (explode('.', $key) as $segment) {
             if (static::exists($segment, $array))
                 $array = $array[$segment];
+            else
+                return null;
         }
 
         return $array;
