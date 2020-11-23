@@ -9,9 +9,8 @@
         "enqueue/amqp-lib": "^0.10.4",
         "symfony/serializer": "^5.1",
         "symfony/property-access": "^5.1",
-        "symfony/property-info": "^5.1",
         "doctrine/doctrine-orm-module": "*",
-        "ngonam22/st-common-service": "^1.0.0"
+        "ngonam22/st-common-service": "^1.0.1"
     },
     "autoload": {
         "psr-4": {
