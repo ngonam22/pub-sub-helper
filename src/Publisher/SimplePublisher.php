@@ -9,11 +9,87 @@
 namespace PubSubHelper\Publisher;
 
 
+use StCommonService\Helper\Arr;
+
 class SimplePublisher extends AbstractPublisher
 {
 
-    public function dispatch($payload, string $exchangeCombination, array $options = [])
-    {
 
+    /**
+     * @var array = [
+     *     'exchange_combination' => (string), //required to specify the exchange name in config
+     *     'properties' => [
+     *          'x-signature' => (string)
+     *     ],
+     *     'routing_key' => (string),
+     *     'priority' => (int),
+     *     'expiration' => (int),
+     *     'headers' => ([]),
+     *     'properties' => ([]),
+     *     'attempts' => (int),
+     *     'delay' => (int), // in second
+     * ]
+     */
+    protected $config = [];
+
+    /**
+     * Dispatch the message and return itself
+     * Dev must close the connection manually
+     *
+     * @param array|int|bool $payload Message's payload data
+     * @param array          $config  = $this->config
+     * @return static
+     * @throws \ReflectionException|\Exception
+     * @throws \Interop\Queue\Exception
+     */
+    public static function dispatch($payload, array $config)
+    {
+        $self         = new static($config);
+        $self->config = $config;
+
+        // open the connection immediately
+        // because of the type of this publisher: "Simple"
+        $self->openConnection();
+
+        // trigger the main function "handle"
+        $self->handle($payload);
+
+        return $self;
+    }
+
+    /**
+     * Dispatch the message then destroy the connection to the Queue
+     *
+     * @param       $payload
+     * @param array $config = $this->config
+     * @throws \ReflectionException
+     * @throws \Interop\Queue\Exception
+     */
+    public static function dispatchDestroy($payload, array $config)
+    {
+        self::dispatch($payload, $config)
+            ->closeConnection()
+        ;
+    }
+
+    /**
+     * Publish the payload to the given config when init
+     *
+     * @param $payload
+     * @throws \Interop\Queue\Exception|\Exception
+     */
+    public function handle($payload)
+    {
+        if (!Arr::exists('exchange_combination', $this->config))
+            throw new \Exception('Option value "exchange_combination" is required');
+
+        $exchangeCombination = $this->config['exchange_combination'];
+        unset($this->config['exchange_combination']);
+
+        $this->getConnector()->publish(
+            $payload,
+            $exchangeCombination,
+            $this->config
+        );
     }
 }

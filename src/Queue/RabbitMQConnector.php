@@ -177,7 +177,19 @@ class RabbitMQConnector
     /**
      * @param       $payload
      * @param null  $exchangeCombination
-     * @param array $options
+     * @param array $options = [
+     *     'properties' => [
+     *          'x-signature' => (string)
+     *     ],
+     *     'routing_key' => (string),
+     *     'priority' => (int),
+     *     'expiration' => (int),
+     *     'headers' => ([]),
+     *     'properties' => ([]),
+     *     'attempts' => (int),
+     *     'delay' => (int) // in second
+     *
+     * ]
      * @return string|null
      * @throws \Interop\Queue\Exception
      */
