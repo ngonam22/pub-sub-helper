@@ -14,8 +14,6 @@ use PubSubHelper\CommonTrait;
 
 use StCommonService\Helper\Arr;
 
-use PubSubHelper\Queue\RabbitMQConnector;
-
 /**
  * Class RabbitMQJob
  * Custom Helper class to provide helpful methods
