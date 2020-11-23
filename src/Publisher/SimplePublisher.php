@@ -17,7 +17,7 @@ class SimplePublisher extends AbstractPublisher
 
     /**
      * @var array = [
-     *     'exchange_combination' => (string), //required to specify the exchange name in config
+     *     'exchange_name' => (string), //required to specify the exchange name in config
      *     'properties' => [
      *          'x-signature' => (string)
      *     ],
@@ -80,11 +80,11 @@ class SimplePublisher extends AbstractPublisher
      */
     public function handle($payload)
     {
-        if (!Arr::exists('exchange_combination', $this->config))
-            throw new \Exception('Option value "exchange_combination" is required');
+        if (!Arr::exists('exchange_name', $this->config))
+            throw new \Exception('Option value "exchange_name" is required');
 
-        $exchangeCombination = $this->config['exchange_combination'];
-        unset($this->config['exchange_combination']);
+        $exchangeCombination = $this->config['exchange_name'];
+        unset($this->config['exchange_name']);
 
         $this->getConnector()->publish(
             $payload,
