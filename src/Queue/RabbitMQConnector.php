@@ -23,7 +23,7 @@ use Enqueue\AmqpTools\DelayStrategyAware;
 
 use StCommonService\Helper\Arr;
 use PubSubHelper\CommonTrait\EventManagerTrait;
-use PubSubHelper\Event\WorkerStopping;
+//use PubSubHelper\Event\WorkerStopping;
 
 class RabbitMQConnector
 {
@@ -104,10 +104,10 @@ class RabbitMQConnector
         $this->config  = $config;
         $this->context = $factory->createContext();
 
-        if (!empty($this->getEventManager()))
-            $this->getEventManager()->attach(WorkerStopping::class, function() {
-                $this->getContext()->close();
-            });
+//        if (!empty($this->getEventManager()))
+//            $this->getEventManager()->attach(WorkerStopping::class, function() {
+//                $this->getContext()->close();
+//            });
     }
 
     /**

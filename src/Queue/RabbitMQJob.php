@@ -10,7 +10,7 @@ namespace PubSubHelper\Queue;
 
 use Interop\Amqp\AmqpConsumer;
 use Interop\Amqp\AmqpMessage;
-use PubSubHelper\CommonTrait;
+//use PubSubHelper\CommonTrait;
 
 use StCommonService\Helper\Arr;
 
@@ -19,11 +19,10 @@ use StCommonService\Helper\Arr;
  * Custom Helper class to provide helpful methods
  * to handle queue message
  *
- * @package StQueue\Queue
  */
 class RabbitMQJob
 {
-    use CommonTrait\EventManagerTrait;
+//    use CommonTrait\EventManagerTrait;
 
     /**
      * Same as RabbitMQQueue, used for attempt counts.
@@ -118,9 +117,9 @@ class RabbitMQJob
     public function getBody()
     {
         if ($this->parsedBody === false)
-            $this->parsedBody = \Zend\Json\Json::decode(
+            $this->parsedBody = \Laminas\Json\Json::decode(
                 $this->getRawBody(),
-                \Zend\Json\Json::TYPE_ARRAY
+                \Laminas\Json\Json::TYPE_ARRAY
             );
 
         return $this->parsedBody;
