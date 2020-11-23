@@ -14,9 +14,13 @@ use PubSubHelper\Helper\Arr;
 class SimplePublisher extends AbstractPublisher
 {
 
-
     /**
-     * @var array = [
+     * Dispatch the message and return itself
+     * Dev must close the connection manually
+     *
+     * @param array|int|bool $payload Message's payload data
+     * @param array          $queueConfig
+     * @param array          $messageConfig  = [
      *     'exchange_name' => (string), //required to specify the exchange name in config
      *     'properties' => [
      *          'x-signature' => (string)
@@ -29,30 +33,21 @@ class SimplePublisher extends AbstractPublisher
      *     'attempts' => (int),
      *     'delay' => (int), // in second
      * ]
-     */
-    protected $config = [];
-
-    /**
-     * Dispatch the message and return itself
-     * Dev must close the connection manually
      *
-     * @param array|int|bool $payload Message's payload data
-     * @param array          $config  = $this->config
      * @return static
      * @throws \ReflectionException|\Exception
      * @throws \Interop\Queue\Exception
      */
-    public static function dispatch($payload, array $config)
+    public static function dispatch($payload, array $queueConfig, array $messageConfig)
     {
-        $self         = new static($config);
-        $self->config = $config;
+        $self = new static($queueConfig);
 
         // open the connection immediately
         // because of the type of this publisher: "Simple"
         $self->openConnection();
 
         // trigger the main function "handle"
-        $self->handle($payload);
+        $self->handle($payload, $messageConfig);
 
         return $self;
     }
@@ -61,13 +56,14 @@ class SimplePublisher extends AbstractPublisher
      * Dispatch the message then destroy the connection to the Queue
      *
      * @param       $payload
-     * @param array $config = $this->config
+     * @param array $queueConfig
+     * @param array $messageConfig = $messageConfig
      * @throws \ReflectionException
      * @throws \Interop\Queue\Exception
      */
-    public static function dispatchDestroy($payload, array $config)
+    public static function dispatchDestroy($payload, array $queueConfig, array $messageConfig)
     {
-        self::dispatch($payload, $config)
+        self::dispatch($payload, $queueConfig, $messageConfig)
             ->closeConnection()
         ;
     }
@@ -76,20 +72,21 @@ class SimplePublisher extends AbstractPublisher
      * Publish the payload to the given config when init
      *
      * @param $payload
+     * @param array $messageConfig = $messageConfig
      * @throws \Interop\Queue\Exception|\Exception
      */
-    public function handle($payload)
+    public function handle($payload, array $messageConfig)
     {
-        if (!Arr::exists('exchange_name', $this->config))
+        if (!Arr::exists('exchange_name', $messageConfig))
             throw new \Exception('Option value "exchange_name" is required');
 
-        $exchangeCombination = $this->config['exchange_name'];
-        unset($this->config['exchange_name']);
+        $exchangeCombination = $messageConfig['exchange_name'];
+        unset($messageConfig['exchange_name']);
 
         $this->getConnector()->publish(
             $payload,
             $exchangeCombination,
-            $this->config
+            $messageConfig
         );
     }
 }
