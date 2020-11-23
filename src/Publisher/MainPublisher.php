@@ -9,7 +9,6 @@
 namespace PubSubHelper;
 
 use PubSubHelper\Publisher\AbstractPublisher;
-use PubSubHelper\Queue\RabbitMQConnector;
 
 abstract class MainPublisher extends AbstractPublisher
 {

@@ -12,7 +12,7 @@ use Interop\Amqp\AmqpConsumer;
 use Interop\Amqp\AmqpMessage;
 //use PubSubHelper\CommonTrait;
 
-use StCommonService\Helper\Arr;
+use PubSubHelper\Helper\Arr;
 
 /**
  * Class RabbitMQJob

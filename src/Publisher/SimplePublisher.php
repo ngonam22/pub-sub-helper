@@ -9,7 +9,7 @@
 namespace PubSubHelper\Publisher;
 
 
-use StCommonService\Helper\Arr;
+use PubSubHelper\Helper\Arr;
 
 class SimplePublisher extends AbstractPublisher
 {

@@ -21,7 +21,7 @@ use Enqueue\AmqpLib\AmqpConnectionFactory as EnqueueAmqpConnectionFactory;
 use Enqueue\AmqpTools\RabbitMqDlxDelayStrategy;
 use Enqueue\AmqpTools\DelayStrategyAware;
 
-use StCommonService\Helper\Arr;
+use PubSubHelper\Helper\Arr;
 use PubSubHelper\CommonTrait\EventManagerTrait;
 //use PubSubHelper\Event\WorkerStopping;
 
