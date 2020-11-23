@@ -7,8 +7,9 @@
         "ext-json": "*",
         "laminas/laminas-json": "^3.1",
         "enqueue/amqp-lib": "^0.10.4",
-        "symfony/serializer": "^5.1",
-        "symfony/property-access": "^5.1",
+        "symfony/serializer": "^4.4.16",
+        "symfony/property-access": "^4.4.16",
+        "symfony/property-info": "^4.4.16",
         "doctrine/doctrine-orm-module": "*",
         "ngonam22/st-common-service": "^1.0.1"
     },
